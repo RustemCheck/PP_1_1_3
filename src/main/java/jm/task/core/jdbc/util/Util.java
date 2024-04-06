@@ -1,5 +1,8 @@
 package jm.task.core.jdbc.util;
 
+import jm.task.core.jdbc.model.User;
+import org.hibernate.SessionFactory;
+import org.hibernate.cfg.Configuration;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
@@ -15,5 +18,9 @@ public final class Util {
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
+    }
+
+    public static SessionFactory getSessionFactory() {
+        return new Configuration().addAnnotatedClass(User.class).buildSessionFactory();
     }
 }
